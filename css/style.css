@@ -101,8 +101,8 @@ h1 {
 }
 
 #grid .cell {
-    flex: 1 1 10%;
-    font-size: 2rem;
+    flex: 0 0 10%;
+    font-size: 1.5rem;
 }
 
 #grid .cell.changed {
@@ -127,12 +127,12 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
     max-width: 400px;
-    margin: 32px auto 0 auto;
+    margin: 16px auto 0 auto;
 }
 
 #buttons button {
     margin: 4px 4px 20px 4px;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 button {
