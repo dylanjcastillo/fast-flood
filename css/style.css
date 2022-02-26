@@ -102,7 +102,7 @@ h1 {
 
 #grid .cell {
     flex: 0 0 10%;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 #grid .cell.changed {
