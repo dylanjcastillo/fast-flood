@@ -238,7 +238,7 @@ $("#start-btn").on("click", function () {
 
     tries++;
     document.cookie = "has_played=1;seed=" + ";expires=" + tomorrow.toUTCString() + ";Secure;path=/";
-    document.getElementById("buttons").scrollIntoView(false);
+    window.scrollTo(0, document.querySelector("#footer").scrollHeight);
 
     $('#countdown').append('<svg> <circle r="60" cx="160" cy="160"></circle></svg>')
     $('.modal-window').addClass('modal-hidden');
@@ -268,7 +268,7 @@ $("#restart-btn").on("click", function () {
     tries++;
     is_active = false;
     is_game_finished = false;
-    document.getElementById("buttons").scrollIntoView(false);
+    window.scrollTo(0, document.querySelector("#footer").scrollHeight);
 
     $('#game-finished-modal').toggleClass('modal-visible');
     $('#countdown-background').show();

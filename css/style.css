@@ -67,7 +67,7 @@ li {
     margin: 16px auto 10px auto;
     justify-content: space-between;
     align-items: baseline;
-    font-size: clamp(1.5rem, 4vh, 2.5rem);
+    font-size: clamp(1.5rem, 2vw, 2rem);
     color: #102A43;
     padding: 0 16px;
 }
@@ -102,7 +102,7 @@ h1 {
 
 #grid .cell {
     flex: 0 0 10%;
-    font-size: clamp(1.5rem, 4vh, 2.5rem);
+    font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
 #grid .cell.changed {
