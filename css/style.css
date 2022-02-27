@@ -1,3 +1,8 @@
+:root {
+    --max-size-width: 338px;
+    --small-size-width: 258px;
+}
+
 body {
     font-family: sans-serif, Arial, Helvetica, Verdana;
     background-color: #F0F4F8;
@@ -53,7 +58,7 @@ li {
 
 #score {
     display: flex;
-    width: 420px;
+    width: var(--max-size-width);
     margin: 16px auto 10px auto;
     justify-content: space-between;
     align-items: baseline;
@@ -83,20 +88,16 @@ h1 {
 
 #grid {
     display: grid;
-    column-gap: 10px;
-    grid-template-columns: repeat(10, 1fr);
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    width: 420px;
-    margin: 0 auto;
     font-size: 32px;
+    line-height: 32px;
+    grid-gap: 2px;
+    grid-template-columns: repeat(10, 32px);
+    place-content: center;
+    place-items: center;
+    width: var(--max-size-width);
+    margin: 0 auto;
 }
 
-#grid .cell {
-    align-self: center;
-    justify-self: center;
-}
 
 button.color-button {
     margin: 0 0 20px 0;
@@ -123,7 +124,7 @@ button.color-button {
     justify-content: center;
     align-content: center;
     align-items: center;
-    width: 420px;
+    width: var(--max-size-width);
     margin: 16px auto 0 auto;
     row-gap: 5px;
 }
@@ -325,9 +326,10 @@ svg circle {
 
 @media screen and (max-width: 420px) {
     #grid {
-        width: 305px;
+        width: var(--small-size-width);
         font-size: 24px;
-        column-gap: 7px;
+        line-height: 24px;
+        grid-template-columns: repeat(10, 24px);
     }
 
     #title {
@@ -335,11 +337,11 @@ svg circle {
     }
 
     #buttons {
-        width: 305px;
+        width: var(--small-size-width);
     }
 
     #score {
-        width: 305px;
+        width: var(--small-size-width);
         font-size: 20px;
     }
 

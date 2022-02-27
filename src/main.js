@@ -46,9 +46,19 @@ function game_finished(has_won = false, color_number = 0) {
         var medal_time = " 🏅"
         var medal_moves = " 🏅"
         var medal_tries = " 🏅"
-        if (tries >= 1) {
+
+        if (moves > max_moves * 0.9) {
             medal_tries = "";
         }
+
+        if (time > moves) {
+            medal_tries = "";
+        }
+
+        if (tries > 1) {
+            medal_tries = "";
+        }
+
         var msg_color = colors[color_number];
         var msg_time = String(time) + " seconds" + medal_time;
         var msg_moves = String(moves) + " moves" + medal_moves;
