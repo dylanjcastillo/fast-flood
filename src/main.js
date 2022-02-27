@@ -43,21 +43,17 @@ function game_finished(has_won = false, color_number = 0) {
     $('#game-finished-modal').toggleClass('modal-visible');
 
     if (has_won) {
-        var medal_time = "🥇"
-        var medal_moves = "🥈"
-        var medal_tries = "🥇"
-        if (tries === 2) {
-            medal_tries = "🥈"
-        } else if (tries >= 3) {
-            medal_tries = "🥉"
-        }
+        var medal_time = " 🏅"
+        var medal_moves = " 🏅"
+        var medal_tries = " 🏅"
+        if (tries >= 1) {
         var msg_color = colors[color_number];
-        var msg_time = String(time) + " seconds " + medal_time;
-        var msg_moves = String(moves) + " moves " + medal_moves;
+        var msg_time = String(time) + " seconds" + medal_time;
+        var msg_moves = String(moves) + " moves" + medal_moves;
         if (tries < 2) {
-            var msg_tries = String(tries) + " try " + medal_tries;
+            var msg_tries = String(tries) + " try" + medal_tries;
         } else {
-            var msg_tries = String(tries) + " tries " + medal_tries;
+            var msg_tries = String(tries) + " tries" + medal_tries;
         }
 
         $('#results-summary').show()
