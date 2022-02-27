@@ -85,9 +85,17 @@ h1 {
     display: grid;
     column-gap: 10px;
     grid-template-columns: repeat(10, 1fr);
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     width: 420px;
     margin: 0 auto;
     font-size: 32px;
+}
+
+#grid .cell {
+    align-self: center;
+    justify-self: center;
 }
 
 button.color-button {
@@ -112,10 +120,12 @@ button.color-button {
 #buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    align-content: start;
+    justify-content: center;
+    align-content: center;
     align-items: center;
     width: 420px;
     margin: 16px auto 0 auto;
+    row-gap: 5px;
 }
 
 
