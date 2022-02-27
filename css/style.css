@@ -53,22 +53,22 @@ li {
 
 #score {
     display: flex;
-    max-width: 400px;
+    width: 420px;
     margin: 16px auto 10px auto;
     justify-content: space-between;
     align-items: baseline;
-    font-size: clamp(1rem, 2vw, 2rem);
+    font-size: 24px;
     color: #102A43;
-    padding: 0 16px;
 }
 
 #title {
     color: #fff;
     background-color: #0F609B;
     text-align: center;
-    padding: .5rem 1rem;
+    padding: 8px 16px;
     margin: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    min-width: 305px
 }
 
 h1 {
@@ -98,7 +98,7 @@ button.color-button {
     width: 80%;
     text-align: center;
     font-size: 32px;
-    padding: 8px;
+    padding: 16px 12px;
     border: none;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
@@ -320,11 +320,27 @@ svg circle {
         column-gap: 7px;
     }
 
+    #title {
+        padding: 4px 8px;
+    }
+
     #buttons {
         width: 305px;
     }
 
+    #score {
+        width: 305px;
+        font-size: 20px;
+    }
+
     button.color-button {
         font-size: 24px;
+    }
+}
+
+@media screen and (min-height: 800px) {
+
+    button.color-button {
+        padding: 12px 8px;
     }
 }
