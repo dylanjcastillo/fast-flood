@@ -257,12 +257,11 @@ $("#start-btn").on("click", function () {
                 $('#countdown').hide();
                 $('#countdown-background').hide();
                 is_active = true;
-                $(this).prop("disabled", false);
+                $('#start-btn').prop("disabled", false);
             }, 500);
             clearInterval(update_counter);
         }
     }, 1000);
-
 });
 
 $("#restart-btn").on("click", function () {
@@ -297,10 +296,10 @@ $("#restart-btn").on("click", function () {
             $('#countdown-value').text("Go!");
             $('#countdown-value').addClass("hidden");
             setTimeout(function () {
+                $('#restart-btn').prop("disabled", false);
                 $('#countdown').hide();
                 $('#countdown-background').hide();
                 is_active = true;
-                $(this).prop("disabled", false);
             }, 500);
             clearInterval(update_counter);
         }
