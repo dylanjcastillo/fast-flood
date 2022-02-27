@@ -89,8 +89,8 @@ function game_finished(has_won = false, color_number = 0) {
         $('#share-btn').hide()
 
         if (tries < max_tries) {
-            var msg_tries = tries === 1 ? "1 try" : `${tries} tries left.`;
-            $('#message-part-2').html("But you still have " + msg_tries + ".<br><br>Play again?");
+            var msg_tries = max_tries - tries === 1 ? "1 try." : `${tries} tries left.`;
+            $('#message-part-2').html("But you still have " + msg_tries + "<br><br>Play again?");
         } else {
             $('#message-part-2').text("Tough luck. See you again tomorrow!");
         }
