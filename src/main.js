@@ -47,29 +47,31 @@ function game_finished(has_won = false, color_number = 0) {
         var medal_moves = " 🏅"
         var medal_tries = " 🏅"
         if (tries >= 1) {
-            var msg_color = colors[color_number];
-            var msg_time = String(time) + " seconds" + medal_time;
-            var msg_moves = String(moves) + " moves" + medal_moves;
-            if (tries < 2) {
-                var msg_tries = String(tries) + " try" + medal_tries;
-            } else {
-                var msg_tries = String(tries) + " tries" + medal_tries;
-            }
-
-            $('#results-summary').show()
-            $('#share-btn').show()
-
-            $('#message-part-1').text("You won!")
-            $('#message-part-2').html("Well done. Here's how you did:");
-
-            $('#final-color').text(msg_color);
-            $('#final-time').text(msg_time);
-            $('#final-moves').text(msg_moves);
-            $('#final-tries').text(msg_tries);
-
-            var text_to_copy = `Fast Flood 124\n🏁 → ${msg_color}\n⌛ → ${msg_time}\n▶️ → ${msg_moves}\n🕹 → ${msg_tries}\n`
-            $('#share-btn').attr("data-clipboard-text", text_to_copy);
+            medal_tries = "";
         }
+        var msg_color = colors[color_number];
+        var msg_time = String(time) + " seconds" + medal_time;
+        var msg_moves = String(moves) + " moves" + medal_moves;
+        if (tries < 2) {
+            var msg_tries = String(tries) + " try" + medal_tries;
+        } else {
+            var msg_tries = String(tries) + " tries" + medal_tries;
+        }
+
+        $('#results-summary').show()
+        $('#share-btn').show()
+
+        $('#message-part-1').text("You won!")
+        $('#message-part-2').html("Well done. Here's how you did:");
+
+        $('#final-color').text(msg_color);
+        $('#final-time').text(msg_time);
+        $('#final-moves').text(msg_moves);
+        $('#final-tries').text(msg_tries);
+
+        var text_to_copy = `Fast Flood 124\n🏁 → ${msg_color}\n⌛ → ${msg_time}\n▶️ → ${msg_moves}\n🕹 → ${msg_tries}\n`
+        $('#share-btn').attr("data-clipboard-text", text_to_copy);
+
     } else {
 
         $('#message-part-1').text("You lost! 😢")
