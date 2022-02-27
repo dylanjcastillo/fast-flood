@@ -234,6 +234,7 @@ if (document.cookie.split(';').some((item) => item.trim().includes('has_played=1
 
 $("#open-modal-btn").trigger("click");
 $("#start-btn").on("click", function () {
+    $(this).prop("disabled", true);
     var update_counter;
 
     tries++;
@@ -256,13 +257,16 @@ $("#start-btn").on("click", function () {
                 $('#countdown').hide();
                 $('#countdown-background').hide();
                 is_active = true;
+                $(this).prop("disabled", false);
             }, 500);
             clearInterval(update_counter);
         }
     }, 1000);
+
 });
 
 $("#restart-btn").on("click", function () {
+    $(this).prop("disabled", true);
     var update_counter;
 
     tries++;
@@ -296,6 +300,7 @@ $("#restart-btn").on("click", function () {
                 $('#countdown').hide();
                 $('#countdown-background').hide();
                 is_active = true;
+                $(this).prop("disabled", false);
             }, 500);
             clearInterval(update_counter);
         }
