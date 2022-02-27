@@ -6,12 +6,6 @@ body {
     padding: 0;
 }
 
-@media screen and (min-width: 416px) {
-    #score {
-        max-width: 384px !important;
-    }
-}
-
 .modal-window {
     margin: 0 auto;
     width: 100%;
@@ -42,13 +36,9 @@ body {
     color: #fff;
 }
 
-.modal-window header {
-    font-weight: bold;
-}
-
 .modal-window h1 {
-    font-size: 150%;
-    margin: 0 0 15px;
+    font-size: 24px;
+    margin: 0 0 16px;
 }
 
 .modal-window .button {
@@ -67,7 +57,7 @@ li {
     margin: 16px auto 10px auto;
     justify-content: space-between;
     align-items: baseline;
-    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-size: clamp(1rem, 2vw, 2rem);
     color: #102A43;
     padding: 0 16px;
 }
@@ -82,7 +72,7 @@ li {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 24px;
     font-weight: 900;
     text-align: center;
     line-height: 100%;
@@ -92,48 +82,42 @@ h1 {
 }
 
 #grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 400px;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(10, 1fr);
+    width: 420px;
     margin: 0 auto;
+    font-size: 32px;
+}
+
+button.color-button {
+    margin: 0 0 20px 0;
+    align-self: center;
+    justify-self: center;
+
+    width: 80%;
     text-align: center;
-}
-
-#grid .cell {
-    flex: 0 0 10%;
-    font-size: clamp(1.5rem, 2vw, 2rem);
-}
-
-#grid .cell.changed {
-    animation: glow 1s linear;
-
-}
-
-@keyframes glow {
-    from {
-        opacity: 50%;
-        text-shadow: 0 0 10px #FF0000;
-    }
-
-    to {
-        opacity: 100%;
-        text-shadow: 0 0 0px #FF0000;
-    }
+    font-size: 32px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    background-color: #fff;
+    margin: 4px 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
 }
 
 #buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 400px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: start;
+    align-items: center;
+    width: 420px;
     margin: 16px auto 0 auto;
 }
 
-#buttons button {
-    margin: 4px 4px 20px 4px;
-    font-size: 2rem;
-}
 
 button {
     border: none;
@@ -144,7 +128,6 @@ button {
     text-align: center;
     font-size: 16px;
     margin: 4px 2px;
-    display: inline-block;
     text-decoration: none;
     cursor: pointer;
     transition-duration: 0.4s;
@@ -318,4 +301,30 @@ svg circle {
 #copied-feedback.visible {
     display: block;
     opacity: 1;
+}
+
+
+@media screen and (max-width: 320px) {
+
+    .modal-window>div {
+        width: 290px;
+    }
+
+
+}
+
+@media screen and (max-width: 420px) {
+    #grid {
+        width: 305px;
+        font-size: 24px;
+        column-gap: 7px;
+    }
+
+    #buttons {
+        width: 305px;
+    }
+
+    button.color-button {
+        font-size: 24px;
+    }
 }

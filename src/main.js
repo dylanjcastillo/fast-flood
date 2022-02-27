@@ -343,7 +343,7 @@ function create_buttons() {
 
     colors.forEach((element, index) => {
         var color = index;
-        buttons_element.append("beforeend", "<button class='button' id='button_" + String(color) + "'>" + element + "</button>");
+        buttons_element.append("beforeend", "<button class='color-button' id='button_" + String(color) + "'>" + element + "</button>");
 
         var button = $('#button_' + String(color));
         button.on("click", function () {
