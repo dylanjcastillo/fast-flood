@@ -1,6 +1,6 @@
 :root {
-    --max-size-width: 338px;
-    --small-size-width: 258px;
+    --max-size-width: 329px;
+    --small-size-width: 249px;
 }
 
 body {
@@ -90,7 +90,7 @@ h1 {
     display: grid;
     font-size: 32px;
     line-height: 32px;
-    grid-gap: 2px;
+    grid-gap: 1px;
     grid-template-columns: repeat(10, 32px);
     place-content: center;
     place-items: center;
@@ -324,7 +324,7 @@ svg circle {
 
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 335px) {
     #grid {
         width: var(--small-size-width);
         font-size: 24px;
