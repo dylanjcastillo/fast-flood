@@ -3,7 +3,7 @@ import {
 } from "./grids.js";
 
 var use_random_grids = false;
-var is_debug = true;
+var is_debug = false;
 var is_active = false;
 var is_game_finished = false;
 var tries = 0;
