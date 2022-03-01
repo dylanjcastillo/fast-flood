@@ -1,3 +1,8 @@
+import {
+    grids
+} from "./grids.js";
+
+var use_random_grids = false;
 var is_debug = true;
 var is_active = false;
 var is_game_finished = false;
@@ -9,7 +14,6 @@ var initial_floods = 2;
 var countdown_time = 3;
 var moves = 0;
 var time = 0;
-var curr_moves = 0;
 var max_moves = 30;
 var max_time = 40;
 var colors = ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"];
@@ -17,14 +21,14 @@ var grid_element = $('#grid');
 var buttons_element = $('#buttons');
 
 const today = new Date();
+const date_key = String(today.getFullYear()) + String(today.getMonth() + 1) + String(today.getDate());
+
 var tomorrow = new Date(today);
 tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
-const tomorrow_utc = new Date(tomorrow.getUTCFullYear(), tomorrow.getUTCMonth(), tomorrow.getUTCDate(), tomorrow.getUTCHours(), 0, 0);
-const seed = String(today.getFullYear()) + String(today.getMonth()) + String(today.getDay());
-
-Math.seedrandom(seed);
+Math.seedrandom(date_key);
+console.log(date_key)
 
 
 function make_array(d1, d2) {
@@ -255,7 +259,7 @@ $("#start-btn").on("click", function () {
     var update_counter;
 
     tries++;
-    document.cookie = "has_played=1;seed=" + ";expires=" + tomorrow.toUTCString() + ";Secure;path=/";
+    document.cookie = "has_played=1;expires=" + tomorrow.toUTCString() + ";Secure;path=/";
     window.scrollTo(0, document.body.scrollHeight);
 
     $('#countdown').append('<svg> <circle r="60" cx="160" cy="160"></circle></svg>')
@@ -339,7 +343,12 @@ function generate_grid(new_grid) {
     if (new_grid) {
         for (var x = 0; x < grid_width; x++) {
             for (var y = 0; y < grid_height; y++) {
-                var color_number = Math.floor(Math.random() * colors.length);
+                if (use_random_grids) {
+                    var color_number = Math.floor(Math.random() * colors.length);
+
+                } else {
+                    var color_number = grids[date_key]["grid"][x][y];
+                }
                 var color = colors[color_number];
                 var cell = new Cell(x, y, color_number, color_number)
                 var cell_original = new Cell(x, y, color_number, color_number)
