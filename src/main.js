@@ -257,6 +257,9 @@ $("#start-btn").on("click", function () {
     document.cookie = "has_played=1;expires=" + tomorrow.toUTCString() + ";Secure;path=/";
     window.scrollTo(0, document.body.scrollHeight);
 
+    $('#time-value').text(String(time) + " / " + String(max_time));
+    $('#moves-value').text(String(moves) + " / " + String(max_moves));
+
     $('#countdown').append('<svg> <circle r="60" cx="160" cy="160"></circle></svg>')
     $('.modal-window').addClass('modal-hidden');
     play_game(true);
