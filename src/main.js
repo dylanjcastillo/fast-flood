@@ -26,7 +26,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-var max_moves = grids[date_key]["solution_moves"] + 3;
+var max_moves = Math.ceil((grids[date_key]["solution_moves"] + 2) / 2) * 2;
 var max_time = max_moves * 2;
 
 
