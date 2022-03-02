@@ -14,8 +14,6 @@ var initial_floods = 2;
 var countdown_time = 3;
 var moves = 0;
 var time = 0;
-var max_moves = 30;
-var max_time = 40;
 var colors = ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"];
 var grid_element = $('#grid');
 var buttons_element = $('#buttons');
@@ -28,7 +26,8 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-console.log(date_key)
+var max_moves = grids[date_key]["solution_moves"] + 3;
+var max_time = max_moves * 2;
 
 
 function make_array(d1, d2) {
@@ -215,7 +214,6 @@ class Flood {
                 colors_in_grid.add(this.grid[x][y].color);
             }
         }
-        console.log(colors_in_grid)
 
         if (colors_in_grid.size === 1) {
             is_active = false
@@ -244,13 +242,10 @@ class Cell {
 }
 
 if (document.cookie.split(';').some((item) => item.trim().includes('has_played=1'))) {
-    console.log("Cookie found");
     if (!is_debug) {
         $("#start-btn").prop("disabled", true);
         $("#start-btn").text("Come back tomorrow");
     }
-} else {
-    console.log("Cookie not found!")
 }
 
 $("#open-modal-btn").trigger("click");
