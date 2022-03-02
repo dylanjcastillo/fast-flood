@@ -48,18 +48,13 @@ function game_finished(has_won = false, color_number = 0) {
     if (has_won) {
         var medal_time = " 🏅"
         var medal_moves = " 🏅"
-        var medal_tries = " 🏅"
 
-        if (moves > max_moves * 0.9) {
-            medal_tries = "";
+        if (moves > grids[date_key]["solution_moves"]) {
+            medal_moves = "";
         }
 
         if (time > moves) {
-            medal_tries = "";
-        }
-
-        if (tries > 1) {
-            medal_tries = "";
+            medal_time = "";
         }
 
         var msg_color = colors[color_number];
