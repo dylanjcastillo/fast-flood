@@ -26,7 +26,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-var max_moves = Math.ceil((grids[date_key]["solution_moves"] + 2) / 2) * 2;
+var max_moves = grids[date_key]["solution_moves"] + 3;
 var max_time = max_moves * 2;
 
 
@@ -46,24 +46,33 @@ function game_finished(has_won = false, color_number = 0) {
     $('#game-finished-modal').toggleClass('modal-visible');
 
     if (has_won) {
-        var medal_time = " 🏅"
-        var medal_moves = " 🏅"
+        var medal_time = ""
+        var medal_moves = ""
 
-        if (moves > grids[date_key]["solution_moves"]) {
-            medal_moves = "";
+        if (moves <= grids[date_key]["solution_moves"]) {
+            medal_moves = " 🥇";
+        } else if (moves <= grids[date_key]["solution_moves"] + 1) {
+            medal_moves = " 🥈";
+        } else if (moves <= grids[date_key]["solution_moves"] + 2) {
+            medal_moves = " 🥉";
         }
 
-        if (time > moves) {
-            medal_time = "";
+
+        if (time <= grids[date_key]["solution_moves"] * 0.7) {
+            medal_time = " 🥇";
+        } else if (time <= grids[date_key]["solution_moves"] * 1) {
+            medal_time = " 🥈";
+        } else if (time <= grids[date_key]["solution_moves"] * 1.3) {
+            medal_time = " 🥉";
         }
 
         var msg_color = colors[color_number];
         var msg_time = String(time) + " seconds" + medal_time;
         var msg_moves = String(moves) + " moves" + medal_moves;
         if (tries < 2) {
-            var msg_tries = String(tries) + " try" + medal_tries;
+            var msg_tries = String(tries) + " try";
         } else {
-            var msg_tries = String(tries) + " tries" + medal_tries;
+            var msg_tries = String(tries) + " tries";
         }
 
         $('#results-summary').show()
@@ -77,7 +86,7 @@ function game_finished(has_won = false, color_number = 0) {
         $('#final-moves').text(msg_moves);
         $('#final-tries').text(msg_tries);
 
-        var text_to_copy = `Fast Flood 124\n🏁 → ${msg_color}\n⌛ → ${msg_time}\n▶️ → ${msg_moves}\n🕹 → ${msg_tries}\n`
+        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\n🏁 → ${msg_color}\n⌛ → ${msg_time}\n▶️ → ${msg_moves}\n🕹 → ${msg_tries}\n`
         $('#share-btn').attr("data-clipboard-text", text_to_copy);
 
     } else {
@@ -88,9 +97,9 @@ function game_finished(has_won = false, color_number = 0) {
 
         if (tries < max_tries) {
             var msg_tries = max_tries - tries === 1 ? "1 more try." : `${max_tries - tries} more tries.`;
-            $('#message-part-2').html("But you still have " + msg_tries + "<br><br>Play again?");
+            $('#message-part-2').html("But you still have " + msg_tries + "<br><br>Would you like to try again?");
         } else {
-            $('#message-part-2').text("Tough luck. See you again tomorrow!");
+            $('#message-part-2').html("Argh! You almost had it.<br><br>Come back tomorrow for more fun.");
         }
     }
 
