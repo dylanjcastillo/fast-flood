@@ -76,6 +76,10 @@ img {
     border-radius: 5px;
 }
 
+#footer {
+    margin-bottom: 20px;
+}
+
 #score {
     display: flex;
     width: var(--max-size-width);
