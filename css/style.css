@@ -57,6 +57,29 @@ li {
     margin-top: 10px;
 }
 
+details {
+    margin-top: 10px;
+}
+
+summary {
+    display: block;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-bottom: 4px;
+}
+
+span {
+    text-decoration: none !important;
+}
+
+summary:hover {
+    color: #BCCCDC;
+}
+
+img {
+    border-radius: 5px;
+}
+
 #score {
     display: flex;
     width: var(--max-size-width);
@@ -315,6 +338,13 @@ svg circle {
     opacity: 1;
 }
 
+details>summary {
+    list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
 
 @media screen and (max-width: 320px) {
 

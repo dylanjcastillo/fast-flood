@@ -2,7 +2,7 @@ import {
     grids
 } from "./grids.js";
 
-var use_random_grids = false;
+var use_random_grids = false; 
 var is_debug = false;
 var is_active = false;
 var is_game_finished = false;
@@ -26,8 +26,8 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-var max_moves = grids[date_key]["solution_moves"] + 3;
-var max_time = max_moves * 2;
+var max_moves = grids[date_key]["solution_moves"] + 2;
+var max_time = Math.round(max_moves * 2.5);
 
 
 function make_array(d1, d2) {
@@ -49,11 +49,11 @@ function game_finished(has_won = false, color_number = 0) {
         var medal_time = ""
         var medal_moves = ""
 
-        if (moves <= grids[date_key]["solution_moves"]) {
+        if (moves < grids[date_key]["solution_moves"]) {
             medal_moves = " 🥇";
-        } else if (moves <= grids[date_key]["solution_moves"] + 1) {
+        } else if (moves === grids[date_key]["solution_moves"]) {
             medal_moves = " 🥈";
-        } else if (moves <= grids[date_key]["solution_moves"] + 2) {
+        } else if (moves === grids[date_key]["solution_moves"] + 1) {
             medal_moves = " 🥉";
         }
 
