@@ -64,12 +64,8 @@ details {
 summary {
     display: block;
     cursor: pointer;
-    text-decoration: underline;
     margin-bottom: 4px;
-}
-
-span {
-    text-decoration: none !important;
+    font-weight: 600;
 }
 
 summary:hover {
