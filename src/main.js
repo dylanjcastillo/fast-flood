@@ -2,7 +2,7 @@ import {
     grids
 } from "./grids.js";
 
-var use_random_grids = false; 
+var use_random_grids = false;
 var is_debug = false;
 var is_active = false;
 var is_game_finished = false;
@@ -14,7 +14,12 @@ var initial_floods = 2;
 var countdown_time = 3;
 var moves = 0;
 var time = 0;
-var colors = ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"];
+
+var colors_orig = ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"];
+var colors_cb = ["🍎", "🎃", "🌼", "🍀", "🦋", "🥦"];
+
+var colors = colors_orig;
+
 var grid_element = $('#grid');
 var buttons_element = $('#buttons');
 
@@ -26,8 +31,8 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-var max_moves = grids[date_key]["solution_moves"] + 2;
-var max_time = Math.round(max_moves * 2.5);
+var max_moves = grids[date_key]["solution_moves"] + 1;
+var max_time = 60;
 
 
 function make_array(d1, d2) {
@@ -57,16 +62,15 @@ function game_finished(has_won = false, color_number = 0) {
             medal_moves = " 🥉";
         }
 
-
-        if (time <= grids[date_key]["solution_moves"] * 0.7) {
+        if (time <= grids[date_key]["solution_moves"] * 0.8) {
             medal_time = " 🥇";
-        } else if (time <= grids[date_key]["solution_moves"] * 1) {
+        } else if (time <= grids[date_key]["solution_moves"] * 1.2) {
             medal_time = " 🥈";
-        } else if (time <= grids[date_key]["solution_moves"] * 1.3) {
+        } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
             medal_time = " 🥉";
         }
 
-        var msg_color = colors[color_number];
+        var msg_color = colors_orig[color_number];
         var msg_time = String(time) + " seconds" + medal_time;
         var msg_moves = String(moves) + " moves" + medal_moves;
         if (tries < 2) {
@@ -254,6 +258,12 @@ if (document.cookie.split(';').some((item) => item.trim().includes('has_played=1
 
 $("#open-modal-btn").trigger("click");
 $("#start-btn").on("click", function () {
+    var is_cb_checked = $('#cb').prop("checked");
+
+    if (is_cb_checked) {
+        colors = colors_cb;
+    }
+
     $(this).prop("disabled", true);
     var update_counter;
 

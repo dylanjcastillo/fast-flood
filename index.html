@@ -41,10 +41,8 @@
             <p>These are the rules of the game:</p>
             <ol>
                 <li>
-                    You win if you make all the squares in the grid the same color.
-                </li>
-                <li>
-                    You get medals if you solve the puzzle quickly and with few moves.
+                    Your goal is to make all the squares in the grid the same color, as fast as possible and with the
+                    fewest possible moves.
                 </li>
                 <li>
                     You start at the square on the top-left corner and change the color of the adjacent squares
@@ -56,7 +54,7 @@
                     <img src="images/game-mechanics.gif" alt="Example of game mechanics" width="250" />
                 </details>
                 <li>
-                    You have a limited number of moves and time. If you go over any of them, you lose.
+                    You have 60 seconds and a limited number of moves. If you go over any of them, you lose.
                 </li>
                 <li>
                     You can try 3 times in a row per day to solve the puzzle. There's a new puzzle every day.
@@ -64,6 +62,9 @@
             </ol>
             <div class="button">
                 <button id="start-btn" href="#">Play now</button>
+            </div>
+            <div id="cb_container">
+                <label><input type="checkbox" id="cb" value="">I'm colorblind</label>
             </div>
         </div>
     </div>

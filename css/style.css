@@ -76,10 +76,6 @@ img {
     border-radius: 5px;
 }
 
-#footer {
-    margin-bottom: 20px;
-}
-
 #score {
     display: flex;
     width: var(--max-size-width);
@@ -344,6 +340,15 @@ details>summary {
 
 details>summary::-webkit-details-marker {
     display: none;
+}
+
+#cb_container {
+    margin: 0 auto 16px auto;
+    text-align: center;
+}
+
+div.button {
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 320px) {
