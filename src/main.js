@@ -90,7 +90,7 @@ function game_finished(has_won = false, color_number = 0) {
         $('#final-moves').text(msg_moves);
         $('#final-tries').text(msg_tries);
 
-        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\n🏁 → ${msg_color}\n⌛ → ${msg_time}\n▶️ → ${msg_moves}\n🕹 → ${msg_tries}\n`
+        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${msg_color}\r\n⌛ → ${msg_time}\r\n▶️ → ${msg_moves}\r\n🕹 → ${msg_tries}\r\n`
         $('#share-btn').attr("data-clipboard-text", text_to_copy);
 
     } else {
