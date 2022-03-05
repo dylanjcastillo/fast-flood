@@ -149,6 +149,35 @@ button.color-button {
     row-gap: 5px;
 }
 
+#feedback-container {
+    margin: 0 auto;
+    text-align: center;
+    margin: 0 auto 16px auto;
+}
+
+a {
+    color: #fff;
+}
+
+a:link {
+    color: #fff;
+}
+
+a:visited {
+    color: #9FB3C8;
+}
+
+a:focus {
+    color: #BCCCDC;
+}
+
+a:hover {
+    color: #BCCCDC;
+}
+
+a:active {
+    color: #627D98;
+}
 
 button {
     border: none;
@@ -342,8 +371,8 @@ details>summary::-webkit-details-marker {
     display: none;
 }
 
-#cb_container {
-    margin: 0 auto 20px auto;
+#cb-container {
+    margin: 0 auto 16px auto;
     text-align: center;
 }
 
