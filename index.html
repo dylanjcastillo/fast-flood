@@ -62,7 +62,7 @@
                 </li>
             </ol>
             <div class="button">
-                <button id="start-btn" href="#">Play now</button>
+                <button id="start-btn" href="#" onclick="fathom.trackGoal('TBZOKGJM', 0);">Play now</button>
             </div>
             <div id="cb-container">
                 <label><input type="checkbox" id="cb" value="">I'm colorblind</label>
@@ -94,7 +94,6 @@
                 <button onclick="open_tab(event, 'results-2')" class="tab-button" id="button-2">2</button>
                 <button onclick="open_tab(event, 'results-3')" class="tab-button" id="button-3">3</button>
             </div>
-
             <div id="scores-container">
                 <div id="results-1" class="score-summary tab" style="display:none;">
                     <p>
@@ -143,10 +142,12 @@
         </div>
         <div id="game-finished-buttons">
             <div class="button tooltip">
-                <button id="share-btn" href="#" data-clipboard-text="">Share this score</button>
+                <button id="share-btn" href="#" data-clipboard-text="" 
+                        onclick="fathom.trackGoal('IIDUYDM2', 0)">Share this score</button>
             </div>
+          
             <div class="button">
-                <button id="restart-btn" href="#">Play again</button>
+                <button id="restart-btn" href="#" onclick="fathom.trackGoal('CI8GWU1L', 0);">Play again</button>
             </div>
         </div>
         <div id="copied-feedback">
