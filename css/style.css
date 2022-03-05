@@ -121,9 +121,6 @@ h1 {
 
 button.color-button {
     margin: 0 0 20px 0;
-    align-self: center;
-    justify-self: center;
-
     width: 80%;
     text-align: center;
     font-size: 32px;
@@ -178,6 +175,37 @@ a:hover {
 a:active {
     color: #627D98;
 }
+
+#feedback-container {
+    margin: 0 auto;
+    text-align: center;
+    margin: 0 auto 16px auto;
+}
+
+a {
+    color: #fff;
+}
+
+a:link {
+    color: #fff;
+}
+
+a:visited {
+    color: #9FB3C8;
+}
+
+a:focus {
+    color: #BCCCDC;
+}
+
+a:hover {
+    color: #BCCCDC;
+}
+
+a:active {
+    color: #627D98;
+}
+
 
 button {
     border: none;
@@ -302,16 +330,78 @@ svg circle {
 }
 
 #results-summary {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 20px;
-    text-align: left;
-    justify-content: left;
+    display: flex-column;
     margin: 0 auto;
-    width: 300px;
+    width: 250px;
 }
 
-#results-summary p {
+#scores-container {
+    margin: 0 auto;
+    width: 250px;
+
+}
+
+#tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tabs>button.tab-button {
+    width: 32px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    margin: 0px 2px;
+    padding: 10px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#tabs>button.tab-button:hover {
+    background-color: #FFF3C4;
+}
+
+#tabs>button.tab-button:active {
+    background-color: #FCE588;
+    transform: none;
+}
+
+#tabs>button.tab-button:focus {
+    background-color: #FCE588;
+}
+
+#tabs>button.tab-button.selected {
+    background-color: #FCE588;
+}
+
+#tabs>button.tab-button:disabled {
+    background-color: #D9E2EC;
+    color: #486581;
+}
+
+.title-score {
+    font-weight: 600;
+}
+
+#scores-container {
+    display: flex;
+    justify-content: center;
+}
+
+.score-summary {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.score-summary p {
     flex: 1 1 100%;
     margin: 0;
 }
@@ -386,7 +476,9 @@ div.button {
         width: 290px;
     }
 
-
+    .score-summary {
+        width: 280px;
+    }
 }
 
 @media screen and (max-width: 335px) {
@@ -412,6 +504,32 @@ div.button {
 
     button.color-button {
         font-size: 24px;
+    }
+
+    button.color-button {
+        font-size: 24px;
+    }
+
+    #message-part-2 {
+        font-size: 16px;
+    }
+
+    #message-part-1 {
+        font-size: 20px;
+    }
+
+    #tabs>button.tab-button {
+        font-size: 16px;
+        padding: 6px 6px;
+    }
+
+    #scores-container p {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 12px 24px;
     }
 }
 
