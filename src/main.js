@@ -14,9 +14,18 @@ var initial_floods = 2;
 var countdown_time = 3;
 var moves = 0;
 var time = 0;
+var best_score = {
+    moves: -1,
+    time: -1,
+    msg_moves: "",
+    msg_time: "",
+    msg_color: "",
+    msg_tries: "",
+}
+var scores = [null, null, null];
 
 var colors_orig = ["🟥", "🟧", "🟨", "🟩", "🟦", "🟪"];
-var colors_cb = ["🍎", "🎃", "🌼", "🍀", "🦋", "🥦"];
+var colors_cb = ["🍎", "🎃", "🌼", "🍀", "🦋", "🍇"];
 
 var colors = colors_orig;
 
@@ -34,6 +43,29 @@ Math.seedrandom(date_key);
 var max_moves = grids[date_key]["solution_moves"] + 1;
 var max_time = 60;
 
+if (is_debug) {
+    function getKey(e) {
+        if (e.keyCode == 38) {
+            game_finished(true, 0);
+        }
+
+        if (e.keyCode == 40) {
+            game_finished(false, 0);
+        }
+    }
+
+    document.onkeyup = getKey;
+}
+
+
+$(".tab-button").on("click", function () {
+
+    var i = parseInt($(this).attr("id").split("-")[1], 10) - 1;
+    if (scores[i] !== null) {
+        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${scores[i].msg_color}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\n`;
+        $('#share-btn').attr("data-clipboard-text", text_to_copy);
+    }
+});
 
 function make_array(d1, d2) {
     var arr = new Array(d1),
@@ -73,44 +105,86 @@ function game_finished(has_won = false, color_number = 0) {
         var msg_color = colors_orig[color_number];
         var msg_time = String(time) + " seconds" + medal_time;
         var msg_moves = String(moves) + " moves" + medal_moves;
+
         if (tries < 2) {
             var msg_tries = String(tries) + " try";
         } else {
             var msg_tries = String(tries) + " tries";
         }
 
+        if (best_score.moves === -1 || moves < best_score.moves) {
+            best_score.moves = moves;
+            best_score.time = time;
+            best_score.msg_color = msg_color;
+            best_score.msg_moves = msg_moves;
+            best_score.msg_time = msg_time;
+        } else if (best_score.moves === moves && time < best_score.time) {
+            best_score.time = time;
+            best_score.msg_color = msg_color;
+            best_score.msg_moves = msg_moves;
+            best_score.msg_time = msg_time;
+        }
+
+        scores[tries - 1] = {
+            moves: moves,
+            time: time,
+            msg_moves: msg_moves,
+            msg_time: msg_time,
+            msg_color: msg_color,
+            msg_tries: msg_tries,
+        }
         $('#results-summary').show()
         $('#share-btn').show()
 
         $('#message-part-1').text("You won!")
-        $('#message-part-2').html("Well done. Here's how you did:");
-
-        $('#final-color').text(msg_color);
-        $('#final-time').text(msg_time);
-        $('#final-moves').text(msg_moves);
-        $('#final-tries').text(msg_tries);
-
-        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${msg_color}\r\n⌛ → ${msg_time}\r\n▶️ → ${msg_moves}\r\n🕹 → ${msg_tries}\r\n`
-        $('#share-btn').attr("data-clipboard-text", text_to_copy);
+        $('#message-part-2').html("Well done. These are your stats:");
 
     } else {
 
-        $('#message-part-1').text("You lost! 😢")
+        var msg_score_lost = "";
         $('#results-summary').hide()
         $('#share-btn').hide()
+        $('#message-part-1').text("You lost! 😢")
+
+        if (best_score.moves != -1) {
+            msg_score_lost = "<br><br>These are your stats:";
+            $('#results-summary').show()
+            $('#share-btn').show()
+        }
 
         if (tries < max_tries) {
             var msg_tries = max_tries - tries === 1 ? "1 more try." : `${max_tries - tries} more tries.`;
-            $('#message-part-2').html("But you still have " + msg_tries + "<br><br>Would you like to try again?");
+            $('#message-part-2').html("But you still have " + msg_tries + "<br><br>Would you like to try again?" + msg_score_lost);
         } else {
-            $('#message-part-2').html("Argh! You almost had it.<br><br>Come back tomorrow for more fun.");
+            $('#message-part-2').html("Argh! You almost had it.<br><br>Come back tomorrow for more fun." + msg_score_lost);
         }
     }
+
+    for (var i = 0; i < max_tries; i++) {
+        if (scores[i] !== null) {
+            for (var j = 0; j < i; j++) {
+                $('#button-' + (j + 1)).removeClass('selected');
+                $('#results-' + (j + 1)).css("display", "none");
+            }
+            $('#button-' + (i + 1)).prop("disabled", false);
+            $('#button-' + (i + 1)).addClass(' selected');
+            $('#results-' + (i + 1)).css("display", "block");
+            $(`#final-color-${i + 1}`).text(scores[i].msg_color);
+            $(`#final-time-${i + 1}`).text(scores[i].msg_time);
+            $(`#final-moves-${i + 1}`).text(scores[i].msg_moves);
+            $(`#final-tries-${i + 1}`).text(scores[i].msg_tries);
+
+            var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${scores[i].msg_color}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\n`;
+            $('#share-btn').attr("data-clipboard-text", text_to_copy);
+        } else {
+            $('#button-' + (i + 1)).prop("disabled", true);
+        }
+    }
+
 
     if (tries >= max_tries) {
         $('#restart-btn').hide();
     }
-
 
 }
 

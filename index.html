@@ -64,8 +64,11 @@
             <div class="button">
                 <button id="start-btn" href="#">Play now</button>
             </div>
-            <div id="cb_container">
+            <div id="cb-container">
                 <label><input type="checkbox" id="cb" value="">I'm colorblind</label>
+            </div>
+            <div id="feedback-container">
+                <a href="https://forms.gle/sNhhpaAkTQwhDVT98" id="feedback">Feedback</a>
             </div>
         </div>
     </div>
@@ -83,36 +86,73 @@
                 <p id="message-part-1"></p>
                 <p id="message-part-2"></p>
             </div>
-            <div id="results-summary">
-                <!-- <p>
-                    Fast Flood <span id="puzzle-id"></span>
-                </p> -->
-                <p>
-                    🏁 → <span id="final-color"></span>
-                </p>
-                <p>
-                    ⌛ → <span id="final-time"></span>
-                </p>
-                <p>
-                    ▶️ → <span id="final-moves"></span>
-                </p>
-                <p>
-                    🕹 → <span id="final-tries"></span>
-                </p>
+        </div>
+        <div id="results-summary">
+
+            <div id="tabs">
+                <button onclick="open_tab(event, 'results-1')" class="tab-button" id="button-1">1</button>
+                <button onclick="open_tab(event, 'results-2')" class="tab-button" id="button-2">2</button>
+                <button onclick="open_tab(event, 'results-3')" class="tab-button" id="button-3">3</button>
             </div>
-            <div id="game-finished-buttons">
-                <div class="button tooltip">
-                    <button id="share-btn" href="#" data-clipboard-text="">Copy to
-                        clipboard</button>
+
+            <div id="scores-container">
+                <div id="results-1" class="score-summary tab" style="display:none;">
+                    <p>
+                        🏁 → <span id="final-color-1"></span>
+                    </p>
+                    <p>
+                        ⌛ → <span id="final-time-1"></span>
+                    </p>
+                    <p>
+                        ▶️ → <span id="final-moves-1"></span>
+                    </p>
+                    <p>
+                        🕹 → <span id="final-tries-1"></span>
+                    </p>
                 </div>
-                <div class="button">
-                    <button id="restart-btn" href="#">Play again</button>
+                <div id="results-2" class="score-summary tab" style="display:none;">
+                    <p>
+                        🏁 → <span id="final-color-2"></span>
+                    </p>
+                    <p>
+                        ⌛ → <span id="final-time-2"></span>
+                    </p>
+                    <p>
+                        ▶️ → <span id="final-moves-2"></span>
+                    </p>
+                    <p>
+                        🕹 → <span id="final-tries-2"></span>
+                    </p>
+                </div>
+                <div id="results-3" class="score-summary tab" style="display:none;">
+                    <p>
+                        🏁 → <span id="final-color-3"></span>
+                    </p>
+                    <p>
+                        ⌛ → <span id="final-time-3"></span>
+                    </p>
+                    <p>
+                        ▶️ → <span id="final-moves-3"></span>
+                    </p>
+                    <p>
+                        🕹 → <span id="final-tries-3"></span>
+                    </p>
                 </div>
             </div>
-            <div id="copied-feedback">
-                <p>Copied to clipboard!</p>
+
+        </div>
+        <div id="game-finished-buttons">
+            <div class="button tooltip">
+                <button id="share-btn" href="#" data-clipboard-text="">Share this score</button>
+            </div>
+            <div class="button">
+                <button id="restart-btn" href="#">Play again</button>
             </div>
         </div>
+        <div id="copied-feedback">
+            <p>Copied score to clipboard!</p>
+        </div>
+    </div>
     </div>
     <div id="game">
         <div id="score">
@@ -130,7 +170,21 @@
     <div id="buttons"></div>
     <div id="footer"></div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/cash/8.1.1/cash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script>
+        function open_tab(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" selected", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " selected";
+        }
     </script>
 </body>
 
