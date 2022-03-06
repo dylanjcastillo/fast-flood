@@ -43,6 +43,29 @@ Math.seedrandom(date_key);
 var max_moves = grids[date_key]["solution_moves"] + 1;
 var max_time = 60;
 
+function get_cookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+if (document.cookie.split(';').some((item) => item.trim().includes(`tries=`))) {
+    tries = parseInt(get_cookie("tries"), 10);
+    if (tries >= max_tries && !is_debug) {
+        $("#start-btn").prop("disabled", true);
+        $("#start-btn").text("Come back tomorrow");
+    }
+}
+
 if (is_debug) {
     function getKey(e) {
         if (e.keyCode == 38) {
@@ -56,7 +79,6 @@ if (is_debug) {
 
     document.onkeyup = getKey;
 }
-
 
 $(".tab-button").on("click", function () {
 
@@ -323,12 +345,6 @@ class Cell {
     }
 }
 
-if (document.cookie.split(';').some((item) => item.trim().includes('has_played=1'))) {
-    if (!is_debug) {
-        $("#start-btn").prop("disabled", true);
-        $("#start-btn").text("Come back tomorrow");
-    }
-}
 
 $("#open-modal-btn").trigger("click");
 $("#start-btn").on("click", function () {
@@ -342,7 +358,7 @@ $("#start-btn").on("click", function () {
     var update_counter;
 
     tries++;
-    document.cookie = "has_played=1;expires=" + tomorrow.toUTCString() + ";Secure;path=/";
+    document.cookie = "tries=" + tries + ";expires=" + tomorrow.toUTCString() + ";Secure;path=/";
     window.scrollTo(0, document.body.scrollHeight);
 
     $('#time-value').text(String(time) + " / " + String(max_time));
@@ -376,6 +392,7 @@ $("#restart-btn").on("click", function () {
     var update_counter;
 
     tries++;
+    document.cookie = "tries=" + tries + ";expires=" + tomorrow.toUTCString() + ";Secure;path=/";
     is_active = false;
     is_game_finished = false;
     window.scrollTo(0, document.body.scrollHeight);
