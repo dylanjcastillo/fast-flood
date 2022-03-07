@@ -41,6 +41,8 @@ tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
 
+$("#solution-moves-value").text(grids[date_key]["solution_moves"]);
+
 function get_cookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
@@ -156,8 +158,17 @@ function game_finished(has_won = false, color_number = 0) {
         $('#results-summary').show()
         $('#share-btn').show()
 
-        $('#message-part-1').text("You won!")
-        $('#message-part-2').html("Well done. These are your stats:");
+        $('#message-part-1').text("You solved it!")
+        if (tries < max_tries) {
+            if (moves > grids[date_key]["solution_moves"]) {
+                $('#message-part-2').html("Well done.<br><br>But can you do it in less moves?<br><br>These are your stats:");
+            } else {
+                $('#message-part-2').html("Well done.<br><br>But can you do it faster?<br><br>These are your stats:");
+            }
+
+        } else {
+            $('#message-part-2').html("Well done. These are your stats:");
+        }
 
     } else {
 
@@ -542,6 +553,7 @@ function play_game(new_game) {
                     return;
                 }
 
+                time++;
                 var medal_time = "";
                 if (time <= grids[date_key]["solution_moves"] * 1) {
                     medal_time = " 🥇";
