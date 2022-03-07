@@ -162,10 +162,11 @@ function game_finished(has_won = false, color_number = 0) {
         if (tries < max_tries) {
             if (moves > grids[date_key]["solution_moves"]) {
                 $('#message-part-2').html("Well done.<br><br>But can you do it in less moves?<br><br>These are your stats:");
-            } else {
+            } else if (time > grids[date_key]["solution_moves"] * 1) {
                 $('#message-part-2').html("Well done.<br><br>But can you do it faster?<br><br>These are your stats:");
+            } else {
+                $('#message-part-2').html("Well done. These are your stats:");
             }
-
         } else {
             $('#message-part-2').html("Well done. These are your stats:");
         }
