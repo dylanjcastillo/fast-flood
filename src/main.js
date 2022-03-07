@@ -40,8 +40,6 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
-var max_moves = grids[date_key]["solution_moves"] + 1;
-var max_time = 60;
 
 function get_cookie(cname) {
     let name = cname + "=";
@@ -108,19 +106,19 @@ function game_finished(has_won = false, color_number = 0) {
         var medal_time = ""
         var medal_moves = ""
 
-        if (moves < grids[date_key]["solution_moves"]) {
+        if (moves <= grids[date_key]["solution_moves"]) {
             medal_moves = " 🥇";
-        } else if (moves === grids[date_key]["solution_moves"]) {
-            medal_moves = " 🥈";
         } else if (moves === grids[date_key]["solution_moves"] + 1) {
+            medal_moves = " 🥈";
+        } else if (moves === grids[date_key]["solution_moves"] + 2) {
             medal_moves = " 🥉";
         }
 
-        if (time <= grids[date_key]["solution_moves"] * 0.8) {
+        if (time <= grids[date_key]["solution_moves"] * 1) {
             medal_time = " 🥇";
-        } else if (time <= grids[date_key]["solution_moves"] * 1.2) {
-            medal_time = " 🥈";
         } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+            medal_time = " 🥈";
+        } else if (time <= grids[date_key]["solution_moves"] * 2) {
             medal_time = " 🥉";
         }
 
@@ -297,7 +295,16 @@ class Flood {
         }
 
         moves++;
-        $('#moves-value').text(String(moves) + " / " + String(max_moves));
+        var medal_moves = ""
+
+        if (moves <= grids[date_key]["solution_moves"]) {
+            medal_moves = " 🥇";
+        } else if (moves === grids[date_key]["solution_moves"] + 1) {
+            medal_moves = " 🥈";
+        } else if (moves === grids[date_key]["solution_moves"] + 2) {
+            medal_moves = " 🥉";
+        }
+        $('#moves-value').text(String(moves) + medal_moves);
 
         var old_color = this.grid[0][0].color;
 
@@ -328,10 +335,6 @@ class Flood {
             }, 500);
             return;
         }
-
-        if (moves === max_moves) {
-            game_finished(false);
-        }
     }
 
 }
@@ -361,8 +364,8 @@ $("#start-btn").on("click", function () {
     document.cookie = "tries=" + tries + ";expires=" + tomorrow.toUTCString() + ";Secure;path=/";
     window.scrollTo(0, document.body.scrollHeight);
 
-    $('#time-value').text(String(time) + " / " + String(max_time));
-    $('#moves-value').text(String(moves) + " / " + String(max_moves));
+    $('#time-value').text(String(time) + " 🥇");
+    $('#moves-value').text(String(moves) + " 🥇");
 
     $('#countdown').append('<svg> <circle r="60" cx="160" cy="160"></circle></svg>')
     $('.modal-window').addClass('modal-hidden');
@@ -402,8 +405,8 @@ $("#restart-btn").on("click", function () {
 
     moves = 0;
     time = 0;
-    $('#time-value').text(String(time) + " / " + String(max_time));
-    $('#moves-value').text(String(moves) + " / " + String(max_moves));
+    $('#time-value').text(String(time) + " 🥇");
+    $('#moves-value').text(String(moves) + " 🥇");
 
     play_game(false);
 
@@ -514,12 +517,15 @@ function play_game(new_game) {
                 }
 
                 time++;
-                $('#time-value').text(String(time) + " / " + String(max_time));
-
-                if (time === max_time) {
-                    game_finished()
-                    clearInterval(run_timer)
+                var medal_time = "";
+                if (time <= grids[date_key]["solution_moves"] * 1) {
+                    medal_time = " 🥇";
+                } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+                    medal_time = " 🥈";
+                } else if (time <= grids[date_key]["solution_moves"] * 2) {
+                    medal_time = " 🥉";
                 }
+                $('#time-value').text(String(time) + medal_time);
 
             }, 1000);
         }, 4000);
@@ -537,12 +543,7 @@ function play_game(new_game) {
                 }
 
                 time++;
-                $('#time-value').text(String(time) + " / " + String(max_time));
-
-                if (time === max_time) {
-                    game_finished()
-                    clearInterval(run_timer)
-                }
+                $('#time-value').text(String(time));
 
             }, 1000);
         }, 4000);
