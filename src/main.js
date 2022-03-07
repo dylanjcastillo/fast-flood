@@ -542,8 +542,15 @@ function play_game(new_game) {
                     return;
                 }
 
-                time++;
-                $('#time-value').text(String(time));
+                var medal_time = "";
+                if (time <= grids[date_key]["solution_moves"] * 1) {
+                    medal_time = " 🥇";
+                } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+                    medal_time = " 🥈";
+                } else if (time <= grids[date_key]["solution_moves"] * 2) {
+                    medal_time = " 🥉";
+                }
+                $('#time-value').text(String(time) + medal_time);
 
             }, 1000);
         }, 4000);
