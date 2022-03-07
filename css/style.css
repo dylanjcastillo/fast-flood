@@ -448,6 +448,10 @@ svg circle {
     transition: opacity 0.1s forwards;
 }
 
+#copied-feedback>p {
+    margin: 0 auto;
+}
+
 #copied-feedback.visible {
     display: block;
     opacity: 1;
