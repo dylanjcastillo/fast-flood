@@ -43,6 +43,15 @@ Math.seedrandom(date_key);
 
 var solution_moves = 16;
 
+$("#solution-btn").on("click", function () {
+    if (is_debug) {
+        var github_url = "./solutions/solution_"
+    } else {
+        var github_url = "https://raw.githubusercontent.com/dylanjcastillo/fast-flood/main/solutions/solution_"
+    }
+    window.open(github_url + grids[date_key]["solution_id"] + ".txt", '_blank').focus();
+});
+
 function get_cookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
@@ -171,6 +180,7 @@ function game_finished(has_won = false, color_number = 0) {
             }
         } else {
             $('#message-part-2').html("Well done. Here's how you did today:");
+            $('#solution-btn').show();
         }
 
     } else {
@@ -381,6 +391,7 @@ $("#start-btn").on("click", function () {
     $('#time-value').text(String(time) + " 🥇");
     $('#moves-value').text(String(moves) + " 🥇");
 
+    $('#solution-btn').hide();
     $('#countdown').append('<svg> <circle r="60" cx="160" cy="160"></circle></svg>')
     $('.modal-window').addClass('modal-hidden');
     play_game(true);
@@ -414,6 +425,7 @@ $("#restart-btn").on("click", function () {
     is_game_finished = false;
     window.scrollTo(0, document.body.scrollHeight);
 
+    $('#solution-btn').hide();
     $('#game-finished-modal').toggleClass('modal-visible');
     $('#countdown-background').show();
 
