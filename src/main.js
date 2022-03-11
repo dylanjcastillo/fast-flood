@@ -41,7 +41,7 @@ tomorrow.setHours(0, 0, 0, 0);
 
 Math.seedrandom(date_key);
 
-$("#solution-moves-value").text(grids[date_key]["solution_moves"]);
+var solution_moves = 16;
 
 function get_cookie(cname) {
     let name = cname + "=";
@@ -108,19 +108,19 @@ function game_finished(has_won = false, color_number = 0) {
         var medal_time = ""
         var medal_moves = ""
 
-        if (moves <= grids[date_key]["solution_moves"]) {
+        if (moves <= solution_moves) {
             medal_moves = " 🥇";
-        } else if (moves === grids[date_key]["solution_moves"] + 1) {
+        } else if (moves === solution_moves + 1) {
             medal_moves = " 🥈";
-        } else if (moves === grids[date_key]["solution_moves"] + 2) {
+        } else if (moves === solution_moves + 2) {
             medal_moves = " 🥉";
         }
 
-        if (time <= grids[date_key]["solution_moves"] * 1) {
+        if (time <= solution_moves * 1) {
             medal_time = " 🥇";
-        } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+        } else if (time <= solution_moves * 1.5) {
             medal_time = " 🥈";
-        } else if (time <= grids[date_key]["solution_moves"] * 2) {
+        } else if (time <= solution_moves * 2) {
             medal_time = " 🥉";
         }
 
@@ -158,17 +158,19 @@ function game_finished(has_won = false, color_number = 0) {
         $('#results-summary').show()
         $('#share-btn').show()
 
-        $('#message-part-1').text("You solved it!")
+        $('#message-part-1').text(`It took you ${moves} moves`);
         if (tries < max_tries) {
-            if (moves > grids[date_key]["solution_moves"]) {
-                $('#message-part-2').html("Well done.<br><br>But can you do it in less moves?<br><br>These are your stats:");
-            } else if (time > grids[date_key]["solution_moves"] * 1) {
-                $('#message-part-2').html("Well done.<br><br>But can you do it faster?<br><br>These are your stats:");
+            if (moves > solution_moves + 2) {
+                $('#message-part-2').html("Nice try.<br><br>Can you do better?");
+            } else if (moves > solution_moves) {
+                $('#message-part-2').html("So close!<br><br>Can you do it in less moves?");
+            } else if (time > solution_moves * 1) {
+                $('#message-part-2').html("Well done.<br><br>But can you do it faster?");
             } else {
-                $('#message-part-2').html("Well done. These are your stats:");
+                $('#message-part-2').html("Well done! Here's how you did:");
             }
         } else {
-            $('#message-part-2').html("Well done. These are your stats:");
+            $('#message-part-2').html("Well done. Here's how you did today:");
         }
 
     } else {
@@ -179,7 +181,7 @@ function game_finished(has_won = false, color_number = 0) {
         $('#message-part-1').text("You lost! 😢")
 
         if (best_score.moves != -1) {
-            msg_score_lost = "<br><br>These are your stats:";
+            msg_score_lost = "<br><br>Here's how you did:";
             $('#results-summary').show()
             $('#share-btn').show()
         }
@@ -309,11 +311,11 @@ class Flood {
         moves++;
         var medal_moves = ""
 
-        if (moves <= grids[date_key]["solution_moves"]) {
+        if (moves <= solution_moves) {
             medal_moves = " 🥇";
-        } else if (moves === grids[date_key]["solution_moves"] + 1) {
+        } else if (moves === solution_moves + 1) {
             medal_moves = " 🥈";
-        } else if (moves === grids[date_key]["solution_moves"] + 2) {
+        } else if (moves === solution_moves + 2) {
             medal_moves = " 🥉";
         }
         $('#moves-value').text(String(moves) + medal_moves);
@@ -516,7 +518,6 @@ function play_game(new_game) {
     if (new_game) {
         generate_grid(true);
         create_buttons();
-        help_flood();
         flood.current_color = flood.grid[0][0].color;
 
         setTimeout(function () {
@@ -530,11 +531,11 @@ function play_game(new_game) {
 
                 time++;
                 var medal_time = "";
-                if (time <= grids[date_key]["solution_moves"] * 1) {
+                if (time <= solution_moves * 1) {
                     medal_time = " 🥇";
-                } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+                } else if (time <= solution_moves * 1.5) {
                     medal_time = " 🥈";
-                } else if (time <= grids[date_key]["solution_moves"] * 2) {
+                } else if (time <= solution_moves * 2) {
                     medal_time = " 🥉";
                 }
                 $('#time-value').text(String(time) + medal_time);
@@ -556,11 +557,11 @@ function play_game(new_game) {
 
                 time++;
                 var medal_time = "";
-                if (time <= grids[date_key]["solution_moves"] * 1) {
+                if (time <= solution_moves * 1) {
                     medal_time = " 🥇";
-                } else if (time <= grids[date_key]["solution_moves"] * 1.5) {
+                } else if (time <= solution_moves * 1.5) {
                     medal_time = " 🥈";
-                } else if (time <= grids[date_key]["solution_moves"] * 2) {
+                } else if (time <= solution_moves * 2) {
                     medal_time = " 🥉";
                 }
                 $('#time-value').text(String(time) + medal_time);
