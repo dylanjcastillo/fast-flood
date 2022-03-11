@@ -414,14 +414,14 @@ svg circle {
     font-weight: 600;
     margin: 0 auto;
     text-align: center;
-    font-size: 36px;
+    font-size: 24px;
     width: 300px;
 }
 
 #message-part-2 {
     margin: 16px auto;
     text-align: left;
-    font-size: 20px;
+    font-size: 18px;
     width: 300px;
 }
 

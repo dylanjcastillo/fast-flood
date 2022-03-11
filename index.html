@@ -42,8 +42,7 @@
             <p>These are the rules of the game:</p>
             <ol>
                 <li>
-                    Your goal is to make all the squares the same color in as few
-                    moves and as fast as possible.
+                    Your goal is to make all the squares the same color in 16 moves or less.
                 </li>
                 <li>
                     You start on the top-left corner and change the color of the adjacent squares
@@ -58,9 +57,6 @@
                     You can try 3 times per day to solve the puzzle. There's a new puzzle every day.
                 </li>
             </ol>
-            <p>
-                Today the goal is to win in <span id="solution-moves-value"></span> moves or less.
-            </p>
             <div class="button">
                 <button id="start-btn" href="#" onclick="fathom.trackGoal('TBZOKGJM', 0);">Play now</button>
             </div>
@@ -148,6 +144,10 @@
 
             <div class="button">
                 <button id="restart-btn" href="#" onclick="fathom.trackGoal('CI8GWU1L', 0);">Play again</button>
+            </div>
+
+            <div class="button">
+                <button id="solution-btn" href="#" onclick="fathom.trackGoal('RXDJFZXM', 0);" hidden>See solution</button>
             </div>
         </div>
         <div id="copied-feedback">
