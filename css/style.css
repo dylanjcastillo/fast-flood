@@ -147,13 +147,17 @@ button.color-button {
 }
 
 #feedback-container {
-    margin: 0 auto;
     text-align: center;
     margin: 0 auto 16px auto;
 }
 
 a {
     color: #fff;
+    text-decoration: none;
+}
+
+#feedback-container>a:nth-of-type(2) {
+    margin-left: 10px;
 }
 
 a:link {
@@ -175,37 +179,6 @@ a:hover {
 a:active {
     color: #627D98;
 }
-
-#feedback-container {
-    margin: 0 auto;
-    text-align: center;
-    margin: 0 auto 16px auto;
-}
-
-a {
-    color: #fff;
-}
-
-a:link {
-    color: #fff;
-}
-
-a:visited {
-    color: #9FB3C8;
-}
-
-a:focus {
-    color: #BCCCDC;
-}
-
-a:hover {
-    color: #BCCCDC;
-}
-
-a:active {
-    color: #627D98;
-}
-
 
 button {
     border: none;
