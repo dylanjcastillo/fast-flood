@@ -52,6 +52,21 @@ $("#solution-btn").on("click", function () {
     window.open(github_url + grids[date_key]["solution_id"] + ".txt", '_blank').focus();
 });
 
+function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
 function get_cookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
@@ -93,7 +108,7 @@ $(".tab-button").on("click", function () {
 
     var i = parseInt($(this).attr("id").split("-")[1], 10) - 1;
     if (scores[i] !== null) {
-        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${scores[i].msg_color}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\n`;
+        var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\nhttps://fastflood.dylancastillo.co/`;
         $('#share-btn').attr("data-clipboard-text", text_to_copy);
     }
 });
@@ -125,11 +140,11 @@ function game_finished(has_won = false, color_number = 0) {
             medal_moves = " 🥉";
         }
 
-        if (time <= solution_moves * 1) {
+        if (time <= solution_moves * 1.5) {
             medal_time = " 🥇";
-        } else if (time <= solution_moves * 1.5) {
-            medal_time = " 🥈";
         } else if (time <= solution_moves * 2) {
+            medal_time = " 🥈";
+        } else if (time <= solution_moves * 3) {
             medal_time = " 🥉";
         }
 
@@ -137,11 +152,7 @@ function game_finished(has_won = false, color_number = 0) {
         var msg_time = String(time) + " seconds" + medal_time;
         var msg_moves = String(moves) + " moves" + medal_moves;
 
-        if (tries < 2) {
-            var msg_tries = String(tries) + " try";
-        } else {
-            var msg_tries = String(tries) + " tries";
-        }
+        var msg_tries = ordinal_suffix_of(tries) + " try";
 
         if (best_score.moves === -1 || moves < best_score.moves) {
             best_score.moves = moves;
@@ -213,12 +224,11 @@ function game_finished(has_won = false, color_number = 0) {
             $('#button-' + (i + 1)).prop("disabled", false);
             $('#button-' + (i + 1)).addClass(' selected');
             $('#results-' + (i + 1)).css("display", "block");
-            $(`#final-color-${i + 1}`).text(scores[i].msg_color);
             $(`#final-time-${i + 1}`).text(scores[i].msg_time);
             $(`#final-moves-${i + 1}`).text(scores[i].msg_moves);
             $(`#final-tries-${i + 1}`).text(scores[i].msg_tries);
 
-            var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n🏁 → ${scores[i].msg_color}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\n`;
+            var text_to_copy = `Fast Flood No.${grids[date_key]["grid_num"]}\r\n⌛ → ${scores[i].msg_time}\r\n▶️ → ${scores[i].msg_moves}\r\n🕹 → ${scores[i].msg_tries}\r\nhttps://fastflood.dylancastillo.co/`;
             $('#share-btn').attr("data-clipboard-text", text_to_copy);
         } else {
             $('#button-' + (i + 1)).prop("disabled", true);
