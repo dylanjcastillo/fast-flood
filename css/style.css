@@ -138,9 +138,7 @@ button.color-button {
 #buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    place-items: center;
     width: var(--max-size-width);
     margin: 16px auto 0 auto;
     row-gap: 5px;
