@@ -140,11 +140,11 @@ function game_finished(has_won = false, color_number = 0) {
             medal_moves = " 🥉";
         }
 
-        if (time <= solution_moves * 2) {
+        if (time <= solution_moves * 4) {
             medal_time = " 🥇";
-        } else if (time <= solution_moves * 4) {
+        } else if (time <= solution_moves * 6) {
             medal_time = " 🥈";
-        } else if (time <= solution_moves * 5) {
+        } else if (time <= solution_moves * 8) {
             medal_time = " 🥉";
         }
 
